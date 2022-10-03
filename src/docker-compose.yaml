@@ -1,0 +1,24 @@
+version: "3.6"
+
+services:
+  application:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ./:/app
+    depends_on:
+      - postgres
+
+  postgres:
+    image: postgres:14.1-alpine
+    restart: always
+    environment:
+      - POSTGRES_USER=database_username
+      - POSTGRES_PASSWORD=database_password
+      - POSTGRES_DB=example_db_schema
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./config:/var/lib/postgresql/config
+      - ./config/database/create-simple-table.sql:/docker-entrypoint-initdb.d/create-simple-table.sql
