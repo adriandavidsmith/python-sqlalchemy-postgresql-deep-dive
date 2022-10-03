@@ -1,2 +1,2 @@
 
-DB_URL = f"postgresql://database_username:database_password@postgres:5432/example_db_schema"
+DB_URL = "postgresql://database_username:database_password@database:5432/example_db_schema"
