@@ -4,13 +4,6 @@ from shared.database_service import DatabaseService
 from shared.table_one import TableOne
 from application import DB_URL
 
-# @profile
-def persist_entries(session, entries_to_write):
-    for entry in entries_to_write:
-        session.add(entry)
-    session.commit()
-
-# @profile
 def create_entries(number_of_seeds):
     entries_to_write = []
     for i in range(0, number_of_seeds):
@@ -26,13 +19,16 @@ def create_entries(number_of_seeds):
         entries_to_write.append(entry)
     return entries_to_write
 
-# @profile
+def persist_entries(session, entries_to_write):
+    for entry in entries_to_write:
+        session.add(entry)
+    session.commit()
+
 def query_entries(session):
     entries = session.query(TableOne).all()
     print(len(entries))
+    print(type(entries[0]))
 
-
-@profile
 def start():
     database_service = DatabaseService()
     database_service.init(create_engine(DB_URL))
