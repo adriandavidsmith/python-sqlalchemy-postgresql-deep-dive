@@ -13,11 +13,5 @@ class DatabaseService:
     def scoped_session(self):
         return ScopedSession(self.Session)
 
-    def create_all(self, Base):
-        Base.metadata.create_all(self.engine)
-
-    def drop_all(self, Base):
-        Base.metadata.drop_all(self.engine)
-
     def dispose_pool(self):
         self.engine.dispose()
