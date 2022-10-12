@@ -29,6 +29,7 @@ def query_entries(session):
     print(len(entries))
     print(type(entries[0]))
 
+@profile
 def start():
     database_service = DatabaseService()
     database_service.init(create_engine(DB_URL))
